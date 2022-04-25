@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shop/pages/catalog.dart';
 import 'package:shop/pages/profile.dart';
 import 'package:shop/theme/colors.dart' as colors;
 
+import '../bloc/category_bloc.dart';
 import 'buy.dart';
 
 class Home extends StatefulWidget {
@@ -17,7 +19,7 @@ class _HomeState extends State<Home> {
   int _selectedIndex = 0;
   TextStyle optionStyle = const TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   final List<Widget> _widgetOptions = <Widget>[
-    Catalog(),
+  Catalog(),
     Buy(),
     Profile(),
   ];

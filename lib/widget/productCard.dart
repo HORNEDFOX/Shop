@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shop/theme/colors.dart' as colors;
 
+import '../model/product.dart';
+
 class ProductCard extends StatelessWidget {
-  const ProductCard({Key? key, required this.type}) : super(key: key);
 
   final String type;
+  final Product product;
+
+  ProductCard({required this.type, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +30,8 @@ class ProductCard extends StatelessWidget {
                           width: 69,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12.0),
-                              image: const DecorationImage(
-                                image: NetworkImage(
-                                    "https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80"),
+                              image: DecorationImage(
+                                image: NetworkImage("${product.imageURL}"),
                                 fit: BoxFit.cover,
                               ))),
                       Container(
@@ -43,7 +46,7 @@ class ProductCard extends StatelessWidget {
                                   Container(
                                     padding: EdgeInsets.only(right: 8),
                                     child: Text(
-                                      "Манго",
+                                      "${product.name}",
                                       style: TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 16,
@@ -56,7 +59,7 @@ class ProductCard extends StatelessWidget {
                                   Container(
                                     padding: EdgeInsets.only(left: 4),
                                     child: Text(
-                                      "4.7",
+                                      "${product.rating}",
                                       style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 15,
@@ -74,7 +77,7 @@ class ProductCard extends StatelessWidget {
                                 children: [
                                   Container(
                                     child: Text(
-                                      "60 ₽",
+                                      "${product.price} ₽",
                                       style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 18,

@@ -51,7 +51,7 @@ class Buy extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   itemCount: 10,
                   itemBuilder: (BuildContext context, int index) {
-                    return ProductCard(type: "buy");
+                    return Text("gvf");//ProductCard(type: "buy");
                   }),
             ),
             Container(

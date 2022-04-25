@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop/model/category.dart';
+import 'package:shop/pages/products.dart';
+
+import '../bloc/product_bloc.dart';
 
 class CatalogCard extends StatelessWidget {
-  const CatalogCard({Key? key}) : super(key: key);
+
+  final Category category;
+
+  CatalogCard({required this.category});
 
   @override
   Widget build(BuildContext context) {
@@ -10,6 +18,7 @@ class CatalogCard extends StatelessWidget {
         child: InkWell(
           splashColor: Colors.white,
           onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => Products(name: category.name, category: category.id,)));
             debugPrint('Card tapped.');
           },
           child: Container(
@@ -22,9 +31,8 @@ class CatalogCard extends StatelessWidget {
                       margin: EdgeInsets.all(8),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12.0),
-                          image: const DecorationImage(
-                            image: NetworkImage(
-                                "https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"),
+                          image: DecorationImage(
+                            image: NetworkImage("${category.imageURL}"),
                             fit: BoxFit.cover,
                           ))),
                 ),
@@ -32,16 +40,15 @@ class CatalogCard extends StatelessWidget {
                   margin: EdgeInsets.only(right: 8, left: 8, bottom: 8, top: 4),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
+                    children: [
                       Text(
-                        'Овощи',
+                        '${category.name}',
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
                         ),
                       ),
-                      Text(
-                        '80 шт.',
+                      Text("${category.number} шт.",
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
