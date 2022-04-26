@@ -19,7 +19,7 @@ class _HomeState extends State<Home> {
   int _selectedIndex = 0;
   TextStyle optionStyle = const TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   final List<Widget> _widgetOptions = <Widget>[
-  Catalog(),
+    Catalog(),
     Buy(),
     Profile(),
   ];

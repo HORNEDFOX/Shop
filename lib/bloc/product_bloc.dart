@@ -18,7 +18,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   }
 
   void _onLoadProduct(LoadProduct event, Emitter<ProductState> emit) {
-    add(UpdateProduct(Product.category.where((element) => element.idCategory == event.category).toList()));
+    add(UpdateProduct(Product.products.where((element) => element.idCategory == event.category).toList()));
   }
 
   void _onUpdateProduct(UpdateProduct event, Emitter<ProductState> emit) {

@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shop/theme/colors.dart' as colors;
 
+import '../bloc/basket_bloc.dart';
 import '../model/product.dart';
 
 class ProductCard extends StatelessWidget {
@@ -106,13 +108,13 @@ class ProductCard extends StatelessWidget {
                             "assets/images/trash-2.svg",
                             color: Colors.white,
                           ),
-                          onPressed: () {}))
+                          onPressed: () {_DeleteProductBasket(context, product);}))
                       : (IconButton(
                           icon: SvgPicture.asset(
                             "assets/images/shopping-cart.svg",
                             color: Colors.white,
                           ),
-                          onPressed: () {})),
+                          onPressed: () {_AddProductBasket(context, product);})),
                 ),
               ],
             ),
@@ -125,5 +127,13 @@ class ProductCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _AddProductBasket(context, Product product) {
+    BlocProvider.of<BasketBloc>(context).add(AddProductBasket(product));
+  }
+
+  void _DeleteProductBasket(context, Product product) {
+    BlocProvider.of<BasketBloc>(context).add(DeleteProductBasket(product));
   }
 }

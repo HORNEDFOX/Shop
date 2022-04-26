@@ -1,9 +1,24 @@
 import 'package:shop/model/product.dart';
 
 class Basket {
-  final List<Product> product;
-  final int totalCoast;
+  late int totalCoast = 0;
   final int idUser;
+  final List<Product> product;
 
-  Basket({required this.product, required this.totalCoast, required this.idUser});
+  Basket(this.product, {required this.idUser});
+
+  void AddBasket(Product newProduct) {
+    product.add(newProduct);
+    totalCoast += newProduct.price;
+  }
+
+  void DeleteBasket(Product newProduct) {
+    product.remove(newProduct);
+    totalCoast -= newProduct.price;
+  }
+
+  void ClearBasket() {
+    product.clear();
+    totalCoast = 0;
+  }
 }

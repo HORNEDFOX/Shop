@@ -8,7 +8,7 @@ class Product{
 
   Product({required this.id, required this.idCategory, required this.name, required this.rating, required this.price, required this.imageURL});
 
-  static List<Product> category = [
+  static List<Product> products = [
     Product(
       id: 1,
       idCategory: 1,

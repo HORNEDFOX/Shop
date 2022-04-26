@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:shop/theme/colors.dart' as colors;
 
+import '../model/order.dart';
+
 class OrderCard extends StatelessWidget {
-  const OrderCard({Key? key}) : super(key: key);
+
+  final Order order;
+
+  OrderCard({required this.order});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +28,7 @@ class OrderCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Заказ №12768",
+                        "Заказ №${order.number}",
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
@@ -36,7 +41,7 @@ class OrderCard extends StatelessWidget {
                           border: Border.all(color: colors.grey),
                         ),
                         child: Text(
-                          "387 ₽",
+                          "${order.totalPrice} ₽",
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 18,
@@ -46,22 +51,21 @@ class OrderCard extends StatelessWidget {
                     ],
                   )),
               Column(
-                children: List<Widget>.generate(
-                  4,
+                children: List<Widget>.generate(order.product.length,
                   (int i) => Container(
                       padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Трюфельный пай",
+                            "${order.product.elementAt(i).name}",
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 16,
                             ),
                           ),
                           Text(
-                            "219₽",
+                            "${order.product.elementAt(i).price} ₽",
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 16,

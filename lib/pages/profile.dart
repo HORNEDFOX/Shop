@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop/theme/colors.dart' as colors;
 
+import '../bloc/order_bloc.dart';
 import '../widget/orderCard.dart';
 
 class Profile extends StatelessWidget {
@@ -72,14 +74,20 @@ class Profile extends StatelessWidget {
                   ),
                 ),
               ),
-              Expanded(
-                child: ListView.builder(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    itemCount: 10,
-                    itemBuilder: (BuildContext context, int index) {
-                      return OrderCard();
-                    }),
-              ),
+    BlocBuilder<OrderBloc, OrderState>(builder: (context, state) {
+      if (state is OrderLoaded) {
+        return Expanded(
+          child: ListView.builder(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              itemCount: state.orders.length,
+              itemBuilder: (BuildContext context, int index) {
+                return OrderCard(order: state.orders.elementAt(index),);
+              }),
+        );
+    }
+      return Container();
+    }
+    ),
             ],
           ),
         ),
