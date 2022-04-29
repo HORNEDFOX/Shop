@@ -6,6 +6,11 @@ class User{
 
   User({required this.id, required this.name, required this.surname, this.imageURL});
 
+  int getIDUser()
+  {
+    return id;
+  }
+
   static User user = User(
     id: 1,
     name: 'Арсений',

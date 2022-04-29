@@ -1,10 +1,16 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shop/pages/validation.dart';
 import 'package:shop/theme/colors.dart' as colors;
 
+import '../bloc/basket_bloc.dart';
+import '../bloc/category_bloc.dart';
+import '../bloc/order_bloc.dart';
+import '../model/user.dart';
 import 'home.dart';
 
 class SignUp extends StatefulWidget {
@@ -212,9 +218,11 @@ class _SignUpState extends State<SignUp> with InputValidationMixin {
       ),
     );
   }
+}
 
-  void _authUser(BuildContext context) {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const Home()));
-  }
+Future<void> _authUser(context) async {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+  BlocProvider.of<CategoryBloc>(context).add(LoadCategory());
+  BlocProvider.of<BasketBloc>(context).add(LoadBasket(User.user.id));
+  BlocProvider.of<OrderBloc>(context).add(LoadOrder(User.user.id));
 }

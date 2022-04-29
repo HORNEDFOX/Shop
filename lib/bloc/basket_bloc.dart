@@ -15,8 +15,8 @@ part 'basket_event.dart';
 class BasketBloc extends Bloc<BasketEvent, BasketState> {
   late Basket _basket;
 
-  BasketBloc({required int idUser}) :
-        _basket = Basket(<Product>[], idUser: idUser), super(BasketLoading()) {
+  BasketBloc() :
+        _basket = Basket(<Product>[]), super(BasketLoading()) {
     on<LoadBasket>(_onLoadBasket);
     on<UpdateBasket>(_onUpdateBasket);
     on<AddProductBasket>(_onAddProductBasket);
@@ -25,6 +25,7 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
   }
 
   void _onLoadBasket(LoadBasket event, Emitter<BasketState> emit) {
+    _basket.idUser = event.idUser;
     add(UpdateBasket(_basket));
   }
 

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop/model/category.dart';
 import 'package:shop/pages/products.dart';
 
-import '../bloc/product_bloc.dart';
 
 class CatalogCard extends StatelessWidget {
 

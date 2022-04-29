@@ -5,7 +5,6 @@ import 'package:shop/pages/catalog.dart';
 import 'package:shop/pages/profile.dart';
 import 'package:shop/theme/colors.dart' as colors;
 
-import '../bloc/category_bloc.dart';
 import 'buy.dart';
 
 class Home extends StatefulWidget {
@@ -32,7 +31,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),

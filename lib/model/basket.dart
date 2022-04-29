@@ -2,10 +2,10 @@ import 'package:shop/model/product.dart';
 
 class Basket {
   late int totalCoast = 0;
-  final int idUser;
+  late int idUser = 0;
   final List<Product> product;
 
-  Basket(this.product, {required this.idUser});
+  Basket(this.product);
 
   void AddBasket(Product newProduct) {
     product.add(newProduct);

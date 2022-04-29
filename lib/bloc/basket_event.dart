@@ -7,7 +7,11 @@ abstract class BasketEvent extends Equatable{
   List<Object> get props => [];
 }
 
-class LoadBasket extends BasketEvent{}
+class LoadBasket extends BasketEvent{
+  final int idUser;
+
+  LoadBasket(this.idUser);
+}
 
 class UpdateBasket extends BasketEvent {
   final Basket productsBasket;
