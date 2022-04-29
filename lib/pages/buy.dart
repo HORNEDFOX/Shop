@@ -4,6 +4,7 @@ import 'package:shop/theme/colors.dart' as colors;
 import '../bloc/basket_bloc.dart';
 import '../bloc/order_bloc.dart';
 import '../model/basket.dart';
+import '../model/user.dart';
 import '../widget/productCard.dart';
 
 class Buy extends StatelessWidget {
@@ -54,7 +55,7 @@ class Buy extends StatelessWidget {
                 Expanded(
                   child: RefreshIndicator(
                     onRefresh: () async {
-                      BlocProvider.of<BasketBloc>(context).add(LoadBasket(1));
+                      BlocProvider.of<BasketBloc>(context).add(LoadBasket(User.user.id));
                     },
                     child: ListView.builder(
                         physics: const AlwaysScrollableScrollPhysics(),
